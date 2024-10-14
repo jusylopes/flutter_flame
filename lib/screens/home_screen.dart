@@ -23,19 +23,18 @@ class _HomeScreenState extends State<HomeScreen> {
   void connectToBluetooth() async {
     try {
       connection = await BluetoothConnection.toAddress('21:13:ED9A');
-      print('Conectado ao dispositivo Bluetooth');
+      debugPrint('Conectado ao dispositivo Bluetooth');
 
       connection!.input!.listen((Uint8List data) {
         setState(() {
           dataReceived = String.fromCharCodes(data).trim();
         });
-        print('Recebido: $dataReceived');
-        
+        debugPrint('Recebido: $dataReceived');
       }).onDone(() {
-        print('Conexão encerrada.');
+        debugPrint('Conexão encerrada.');
       });
     } catch (error) {
-      print('Erro ao conectar: $error');
+      debugPrint('Erro ao conectar: $error');
     }
   }
 
