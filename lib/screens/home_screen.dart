@@ -1,61 +1,53 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_flame/blocs/bluetooth/bluetooth_cubit.dart';
+import 'package:flutter_flame/blocs/bluetooth/bluetooth_state.dart';
+import 'package:flutter_flame/utils/app_strings.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  BluetoothConnection? connection;
-  String dataReceived = 'Sem dados';
-
-  @override
-  void initState() {
-    super.initState();
-    connectToBluetooth();
-  }
-
-  void connectToBluetooth() async {
-    try {
-      connection = await BluetoothConnection.toAddress('21:13:ED9A');
-      debugPrint('Conectado ao dispositivo Bluetooth');
-
-      connection!.input!.listen((Uint8List data) {
-        setState(() {
-          dataReceived = String.fromCharCodes(data).trim();
-        });
-        debugPrint('Recebido: $dataReceived');
-      }).onDone(() {
-        debugPrint('Conexão encerrada.');
-      });
-    } catch (error) {
-      debugPrint('Erro ao conectar: $error');
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Status: $dataReceived'),
-        ElevatedButton(
-          onPressed: () {
-            connectToBluetooth();
-          },
-          child: const Text('Conectar ao Bluetooth'),
-        ),
-      ],
-    );
-  }
+    final bluetoothCubit = context.read<BluetoothCubit>();
+    bluetoothCubit.requestPermissions().then((_) {
+      bluetoothCubit.connectToDevice(AppStrings.bluetoothConnectionAddress);
+    });
 
-  @override
-  void dispose() {
-    connection?.dispose();
-    super.dispose();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(AppStrings.appName),
+      ),
+      body: BlocBuilder<BluetoothCubit, BluetoothState>(
+        builder: (context, state) {
+          if (state.isConnecting) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 16),
+                  Text(state.statusMessage),
+                ],
+              ),
+            );
+          }
+
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  state.receivedData,
+                  style: const TextStyle(fontSize: 24),
+                ),
+                const SizedBox(height: 16),
+                Text(state.statusMessage),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }
