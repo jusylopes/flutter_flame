@@ -1,4 +1,5 @@
+import 'dart:ui';
+
 class AppColors {
-  static const String appName = 'Flame';
-  static const String appFontFamily = '';
+  static const Color scaffoldBackgroundColor = Color(0xFF8dcced);
 }
