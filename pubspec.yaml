@@ -24,9 +24,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/cloud.png
+    - assets/images/eyes_flame.png
+    - assets/images/eyes.png
+    - assets/images/flame.gif
+    - assets/images/tree.gif
 
   fonts:
     - family: Pixelify
