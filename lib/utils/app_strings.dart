@@ -1,6 +1,6 @@
 class AppStrings {
   static const String appName = 'Flame';
-  static const String appFontFamily = '';
+  static const String appFontFamily = 'Pixelify';
 
   static const String bluetoothConnectionAddress = '';
   static const String connectingMessage = 'Conectando...';
