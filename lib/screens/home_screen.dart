@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flame/blocs/bluetooth/bluetooth_cubit.dart';
 import 'package:flutter_flame/blocs/bluetooth/bluetooth_state.dart';
+import 'package:flutter_flame/screens/widgets/cloud_backgorund.dart';
+import 'package:flutter_flame/utils/app_colors.dart';
 import 'package:flutter_flame/utils/app_strings.dart';
 import 'package:flutter_flame/utils/assets_manager.dart';
 
@@ -18,10 +20,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const CloudBackground(),
+          Image.asset(AssetsManager.imageCloud),
           BlocBuilder<BluetoothCubit, BluetoothState>(
             builder: (context, state) {
-              final isFireDetected = state.receivedData == "1";
+              final bool isFireDetected = state.receivedData == "1";
 
               if (state.isConnecting) {
                 return Center(
@@ -49,31 +51,42 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       const SizedBox(
-                        height: 200,
+                        height: 160,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 80),
-                        child: Text(
-                          isFireDetected
-                              ? "Fogo detectado"
-                              : "Tudo certo por aqui!",
-                          style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: AppStrings.appFontFamily,
-                              color: Colors.black),
-                          textAlign: TextAlign.center,
+                      SizedBox(
+                        width: 260,
+                        child: Column(
+                          children: [
+                            Text(
+                              isFireDetected
+                                  ? "fogo detectado"
+                                  : "tudo certo por aqui!",
+                              style: const TextStyle(
+                                fontSize: 60,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: AppStrings.appFontFamily,
+                                color: Colors.black,
+                                height: 0.75,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            if (isFireDetected)
+                              RichText(
+                                text: const TextSpan(
+                                  text: 'ligar para 193, urgente!',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    backgroundColor: AppColors.flameColor,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
-                      if (isFireDetected)
-                        const Text(
-                          "Ligar para 193, urgente!",
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                     ],
                   )
                 ],
@@ -82,46 +95,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CloudBackground extends StatelessWidget {
-  const CloudBackground({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Transform.scale(
-            scale: 1.5,
-            child: ClipRect(
-              child: Align(
-                alignment: Alignment.topRight,
-                widthFactor: 0.7,
-                child: Image.asset(AssetsManager.imageCloud),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: ClipRect(
-            child: Align(
-              alignment: Alignment.topLeft,
-              widthFactor: 0.5,
-              child: Image.asset(AssetsManager.imageCloud),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

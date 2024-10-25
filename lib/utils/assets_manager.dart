@@ -4,8 +4,8 @@ class AssetsManager {
 
   static String imagePath = 'assets/images';
   static String imageLogo = '$imagePath/logo.png';
-  
-  static String imageCloud = '$imagePath/cloud.png';
+
+  static String imageCloud = '$imagePath/cloud.gif';
   static String imageEyesFlame = '$imagePath/eyes_flame.png';
   static String imageEyes = '$imagePath/eyes.png';
   static String imageFlameGif = '$imagePath/flame.gif';
