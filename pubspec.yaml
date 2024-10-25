@@ -25,15 +25,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/cloud.png
+    - assets/images/cloud.gif
     - assets/images/eyes_flame.png
     - assets/images/eyes.png
     - assets/images/flame.gif
     - assets/images/tree.gif
 
   fonts:
-    - family: Pixelify
       fonts:
-        - asset: assets/fonts/PixelifySans-Regular.ttf
-        - asset: assets/fonts/PixelifySans-Bold.ttf
-          weight: 700
+        - asset: assets/fonts/LeagueSpartan.ttf
+
