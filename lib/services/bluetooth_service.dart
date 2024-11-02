@@ -1,11 +1,11 @@
 import 'package:flutter_blue_classic/flutter_blue_classic.dart';
 import 'package:flutter_flame/utils/app_strings.dart';
 
-abstract class BluetoothPlugin {
+abstract class BluetoothService {
   Future<BluetoothConnection> connect({required String address});
 }
 
-class BluetoothPluginImp implements BluetoothPlugin {
+class BluetoothServiceImpl implements BluetoothService {
   final FlutterBlueClassic _flutterBlueClassic = FlutterBlueClassic();
 
   @override

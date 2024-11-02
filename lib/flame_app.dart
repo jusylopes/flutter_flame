@@ -13,7 +13,7 @@ class FlameApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => BluetoothCubit(BluetoothPluginImp())),
+            create: (context) => BluetoothCubit(BluetoothServiceImpl())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
