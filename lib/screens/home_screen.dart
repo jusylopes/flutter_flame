@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flame/blocs/bluetooth/bluetooth_cubit.dart';
 import 'package:flutter_flame/blocs/bluetooth/bluetooth_state.dart';
-import 'package:flutter_flame/screens/widgets/cloud_backgorund.dart';
 import 'package:flutter_flame/utils/app_colors.dart';
 import 'package:flutter_flame/utils/app_strings.dart';
 import 'package:flutter_flame/utils/assets_manager.dart';
