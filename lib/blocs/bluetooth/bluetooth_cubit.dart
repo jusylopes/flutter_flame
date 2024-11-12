@@ -7,7 +7,7 @@ import 'package:flutter_flame/utils/app_strings.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BluetoothCubit extends Cubit<BluetoothState> {
-  final BluetoothPlugin _bluetoothPlugin;
+  final BluetoothService _bluetoothPlugin;
   BluetoothConnection? _connection;
 
   BluetoothCubit(this._bluetoothPlugin) : super(BluetoothState.initial());
