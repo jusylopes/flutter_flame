@@ -4,8 +4,10 @@ import 'package:flutter_flame/utils/app_colors.dart';
 abstract class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor);
+      primarySwatch: Colors.blue,
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: AppColors.backgroundColor,
+      primaryColorDark: AppColors.foregroundColor,
+    );
   }
 }
