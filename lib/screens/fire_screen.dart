@@ -4,6 +4,7 @@ import 'package:flutter_flame/blocs/bluetooth/bluetooth_cubit.dart';
 import 'package:flutter_flame/blocs/bluetooth/bluetooth_state.dart';
 import 'package:flutter_flame/utils/app_strings.dart';
 import 'package:flutter_flame/utils/assets_manager.dart';
+import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
 class FireScreen extends StatefulWidget {
@@ -34,50 +35,52 @@ class _FireScreenState extends State<FireScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Stack(
-          children: [
-            Image.asset(AssetsManager.imageCloud),
-            BlocBuilder<BluetoothCubit, BluetoothState>(
-              builder: (context, state) {
-                final bool isFireDetected = state.receivedData == "1";
+      body: Stack(
+        children: [
+          rive.RiveAnimation.asset(
+            AssetsManager.animationTree,
+            fit: BoxFit.cover,
+          ),
+          BlocBuilder<BluetoothCubit, BluetoothState>(
+            builder: (context, state) {
+              const bool isFireDetected = true;
 
-                if (state.isConnecting) {
-                  return Column(
-                    children: [
-                      const CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      Text(state.statusMessage),
-                    ],
-                  );
-                }
-
-                return Stack(
-                  alignment: Alignment.center,
+              if (state.isConnecting) {
+                return Column(
                   children: [
-                    Image.asset(AssetsManager.imageTreeGif),
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text(state.statusMessage),
+                  ],
+                );
+              }
+
+              return Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  if (isFireDetected)
                     Image.asset(
-                      isFireDetected
-                          ? AssetsManager.imageEyesFlame
-                          : AssetsManager.imageEyes,
+                      AssetsManager.imageFlameGif,
                     ),
-                    if (isFireDetected)
-                      Image.asset(AssetsManager.imageFlameGif),
-                    Column(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 42,
+                    ),
+                    child: Column(
                       children: [
                         const SizedBox(
                           height: 160,
                         ),
                         SizedBox(
-                          width: 260,
+                          width: 290,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 isFireDetected
                                     ? "fogo detectado"
                                     : "tudo certo por aqui!",
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 55,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: AppStrings.appFontFamily,
@@ -103,13 +106,13 @@ class _FireScreenState extends State<FireScreen> {
                           ),
                         ),
                       ],
-                    )
-                  ],
-                );
-              },
-            ),
-          ],
-        ),
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
+        ],
       ),
     );
   }
