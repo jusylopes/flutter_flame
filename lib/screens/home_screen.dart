@@ -12,7 +12,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[FireScreen(), ContactScreen()];
+  static const List<Widget> _pages = <Widget>[
+    FireScreen(),
+    ContactScreen(),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -31,25 +34,27 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(80),
           child: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_rounded,
-                  size: 30,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home_rounded,
+                    size: 30,
+                  ),
+                  label: 'home',
                 ),
-                label: 'home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.contact_page_rounded,
-                  size: 30,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.contact_page_rounded,
+                    size: 30,
+                  ),
+                  label: 'contatos',
                 ),
-                label: 'contatos',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-          ),
+              ],
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              backgroundColor: Colors.black,
+              unselectedItemColor: Theme.of(context).scaffoldBackgroundColor,
+              selectedItemColor: Colors.white),
         ),
       ),
     );
