@@ -38,7 +38,7 @@ class _FireScreenState extends State<FireScreen> {
       body: Stack(
         children: [
           rive.RiveAnimation.asset(
-            AssetsManager.animationTree,
+            AssetsManager.animationForest,
             fit: BoxFit.cover,
           ),
           BlocBuilder<BluetoothCubit, BluetoothState>(
@@ -58,9 +58,32 @@ class _FireScreenState extends State<FireScreen> {
               return Stack(
                 alignment: Alignment.bottomLeft,
                 children: [
+                  rive.RiveAnimation.asset(
+                    isFireDetected
+                        ? AssetsManager.animationSadFace
+                        : AssetsManager.animationHappyFace,
+                    fit: BoxFit.cover,
+                  ),
                   if (isFireDetected)
-                    Image.asset(
-                      AssetsManager.imageFlameGif,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const SizedBox(
+                          width: 85,
+                        ),
+                        Image.asset(
+                          AssetsManager.imageFlameGif,
+                          height: 350,
+                        ),
+                        const SizedBox(
+                          width: 60,
+                        ),
+                        Image.asset(
+                          AssetsManager.imageFlameGif,
+                          height: 200,
+                        ),
+                      ],
                     ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -69,7 +92,7 @@ class _FireScreenState extends State<FireScreen> {
                     child: Column(
                       children: [
                         const SizedBox(
-                          height: 160,
+                          height: 150,
                         ),
                         SizedBox(
                           width: 290,
