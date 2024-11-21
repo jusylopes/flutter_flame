@@ -15,8 +15,11 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_blue_classic: ^0.0.3
   flutter_local_notifications: ^17.2.4
+  font_awesome_flutter: ^10.8.0
   permission_handler: ^11.3.1
+  rive: ^0.13.17
   url_launcher: ^6.3.1
+  workmanager: ^0.5.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -27,11 +30,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/cloud.gif
-    - assets/images/eyes_flame.png
-    - assets/images/eyes.png
     - assets/images/flame.gif
-    - assets/images/tree.gif
+    - assets/animations/forest.riv
+    - assets/animations/happy_face.riv
+    - assets/animations/sad_face.riv
+    - assets/icons/icon_home.svg
+    - assets/icons/icon_contact.svg
 
   fonts:
     - family: LeagueSpartan
