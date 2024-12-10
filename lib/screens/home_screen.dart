@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flame/screens/contact_screen.dart';
 import 'package:flutter_flame/screens/fire_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,33 +30,30 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: _pages.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(80),
-          child: BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_rounded,
-                    size: 30,
-                  ),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.contact_page_rounded,
-                    size: 30,
-                  ),
-                  label: 'contatos',
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              onTap: _onItemTapped,
-              backgroundColor: Colors.black,
-              unselectedItemColor: Theme.of(context).scaffoldBackgroundColor,
-              selectedItemColor: Colors.white),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(45),
         ),
+        child: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.house,
+                ),
+                label: 'home',
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.addressCard,
+                ),
+                label: 'contatos',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            backgroundColor: Colors.black,
+            unselectedItemColor: Theme.of(context).scaffoldBackgroundColor,
+            selectedItemColor: Colors.white),
       ),
     );
   }

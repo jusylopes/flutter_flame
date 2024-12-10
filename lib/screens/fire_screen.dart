@@ -43,7 +43,7 @@ class _FireScreenState extends State<FireScreen> {
           ),
           BlocBuilder<BluetoothCubit, BluetoothState>(
             builder: (context, state) {
-              const bool isFireDetected = true;
+              bool isFireDetected = state.receivedData == '1';
 
               if (state.isConnecting) {
                 return Column(
@@ -99,11 +99,11 @@ class _FireScreenState extends State<FireScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 isFireDetected
                                     ? "fogo detectado"
                                     : "tudo certo por aqui!",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 55,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: AppStrings.appFontFamily,
