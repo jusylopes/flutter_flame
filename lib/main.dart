@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flame/flame_app.dart';
-import 'package:flutter_flame/services/background_service.dart';
-import 'package:flutter_flame/services/notification_service.dart';
+import 'package:flutter_flame/app.dart';
+import 'package:flutter_flame/service/background_service.dart';
+import 'package:flutter_flame/service/notification_service.dart';
 import 'package:workmanager/workmanager.dart';
 
 void main() {
@@ -17,5 +17,5 @@ void main() {
     inputData: {'receivedData': '1'},
   );
 
-  runApp(const FlameApp());
+  runApp(const MyApp());
 }
